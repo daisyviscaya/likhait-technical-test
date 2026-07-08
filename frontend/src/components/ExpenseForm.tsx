@@ -4,9 +4,9 @@
 
 import React from "react";
 import { ExpenseFormData } from "../types";
-import { EXPENSE_CATEGORIES } from "../constants/categories";
 import { TextField, SelectBox, Button } from "../vibes";
 import { useExpenseForm } from "../hooks/useExpenseForm";
+import { fetchCategories } from "../services/api";
 
 interface ExpenseFormProps {
   initialData?: Partial<ExpenseFormData>;
@@ -14,6 +14,8 @@ interface ExpenseFormProps {
   onCancel?: () => void;
   submitLabel?: string;
 }
+
+const categories = await fetchCategories();
 
 export function ExpenseForm({
   initialData,
@@ -39,9 +41,10 @@ export function ExpenseForm({
     marginTop: "0.5rem",
   };
 
-  const categoryOptions = EXPENSE_CATEGORIES.map((category) => ({
-    value: category,
-    label: category,
+  // Use the live backend data for the category options for a real-time updated list
+  const categoryOptions = categories.map((category) => ({
+    value: category.name,
+    label: category.name,
   }));
 
   return (
