@@ -51,6 +51,7 @@ export function CategoryForm({
         <Button
           type="submit"
           variant="primary"
+          disabled={isSubmitting}
           fullWidth
         >
           {isSubmitting ? "Submitting..." : submitLabel}
@@ -59,6 +60,8 @@ export function CategoryForm({
           <Button
             type="button"
             variant="secondary"
+            onClick={onCancel}
+            disabled={isSubmitting}
           >
             Cancel
           </Button>
