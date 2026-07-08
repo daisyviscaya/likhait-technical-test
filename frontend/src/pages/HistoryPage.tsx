@@ -150,6 +150,11 @@ const HistoryPage: React.FC = () => {
     color: COLORS.secondary.s08,
   };
 
+  const buttonsGroupStyle: React.CSSProperties = {
+    display: "flex",
+    gap: "8px",
+  }
+
   return (
     <div style={pageStyle}>
       <div style={headerStyle}>
@@ -160,7 +165,7 @@ const HistoryPage: React.FC = () => {
             onYearChange={handleYearChange}
           />
         </div>
-        <div style={{ display: "flex", gap: "8px" }}>
+        <div style={buttonsGroupStyle}>
           <Button variant="secondary" onClick={() => setIsNewCategoryModalOpen(true)}>
             Add Category
           </Button>
