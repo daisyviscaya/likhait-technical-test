@@ -65,7 +65,7 @@ RSpec.describe "Api::Expenses", type: :request do
           post "/api/expenses", params: invalid_params, as: :json
         }.not_to change(Expense, :count)
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
 
       it "with empty descriptions" do
@@ -82,7 +82,7 @@ RSpec.describe "Api::Expenses", type: :request do
           post "/api/expenses", params: invalid_params, as: :json
         }.not_to change(Expense, :count)
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
 
       it "fails with empty date" do
