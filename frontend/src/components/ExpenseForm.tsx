@@ -57,7 +57,7 @@ export function ExpenseForm({
   }));
 
   return (
-    <form onSubmit={handleSubmit} style={formStyle}>
+    <form onSubmit={handleSubmit} noValidate style={formStyle}>
       <TextField
         label="Amount"
         type="number"
