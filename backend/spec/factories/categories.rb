@@ -1,5 +1,18 @@
 FactoryBot.define do
   factory :category do
-    name { "MyString" }
+    sequence(:name) do |n|
+      "#{%w[
+        Food
+        Transportation
+        Entertainment
+        Shopping
+        Bills
+        Healthcare
+        Education
+        Travel
+        Personal
+        Other
+      ].sample} #{n}"
+    end
   end
 end
