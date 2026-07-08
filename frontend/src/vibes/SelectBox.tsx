@@ -32,6 +32,11 @@ export function SelectBox({
     color: COLORS.text.primary,
   };
 
+  const requiredStyle: React.CSSProperties = {
+    color: COLORS.danger,
+    marginLeft: "2px",
+  };
+
   const selectStyle: React.CSSProperties = {
     padding: "0.5rem 0.75rem",
     fontSize: "1rem",
@@ -52,7 +57,12 @@ export function SelectBox({
 
   return (
     <div style={containerStyle}>
-      {label && <label style={labelStyle}>{label}</label>}
+      {label && (
+        <label style={labelStyle}>
+          {label}
+          {props.required && <span style={requiredStyle}>*</span>}
+        </label>
+      )}
       <select style={selectStyle} {...props}>
         <option value="">Select...</option>
         {options.map((option) => (

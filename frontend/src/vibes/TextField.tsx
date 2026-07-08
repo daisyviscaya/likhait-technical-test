@@ -47,9 +47,19 @@ export function TextField({
     marginTop: "-0.25rem",
   };
 
+  const requiredStyle: React.CSSProperties = {
+    color: COLORS.danger,
+    marginLeft: "2px",
+  };
+
   return (
     <div style={containerStyle}>
-      {label && <label style={labelStyle}>{label}</label>}
+      {label && (
+        <label style={labelStyle}>
+          {label}
+          {props.required && <span style={requiredStyle}>*</span>}
+        </label>
+      )}
       <input style={inputStyle} {...props} />
       {error && <span style={errorStyle}>{error}</span>}
     </div>
