@@ -65,7 +65,7 @@ RSpec.describe "Api::Expenses", type: :request do
           post "/api/expenses", params: invalid_params, as: :json
         }.to change(Expense, :count).by(1)
 
-        expect(response).to have_http_status(:created)
+        expect(response).to have_http_status(:unprocessable_content)
       end
 
       it "with empty descriptions" do
