@@ -2,6 +2,7 @@ import React from "react";
 import { CategoryFormData } from "../types";
 import { TextField, Button } from "../vibes";
 import { useCategoryForm } from "../hooks/useCategoryForm";
+import { formStyle, buttonGroupStyle } from "../styles/forms";
 
 interface CategoryFormProps {
   initialData?: Partial<CategoryFormData>;
@@ -22,18 +23,6 @@ export function CategoryForm({
       initialData,
       onSubmit,
     });
-
-  const formStyle: React.CSSProperties = {
-    display: "flex",
-    flexDirection: "column",
-    gap: "1rem",
-  };
-
-  const buttonGroupStyle: React.CSSProperties = {
-    display: "flex",
-    gap: "0.5rem",
-    marginTop: "0.5rem",
-  };
 
   return(
     <form onSubmit={handleSubmit} style={formStyle}>

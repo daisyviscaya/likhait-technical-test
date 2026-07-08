@@ -7,6 +7,7 @@ import { Category, ExpenseFormData } from "../types";
 import { TextField, SelectBox, Button } from "../vibes";
 import { useExpenseForm } from "../hooks/useExpenseForm";
 import { fetchCategories } from "../services/api";
+import { buttonGroupStyle, formStyle } from "../styles/forms";
 
 interface ExpenseFormProps {
   initialData?: Partial<ExpenseFormData>;
@@ -37,18 +38,6 @@ export function ExpenseForm({
 
     loadCategories();
   }, []);
-
-  const formStyle: React.CSSProperties = {
-    display: "flex",
-    flexDirection: "column",
-    gap: "1rem",
-  };
-
-  const buttonGroupStyle: React.CSSProperties = {
-    display: "flex",
-    gap: "0.5rem",
-    marginTop: "0.5rem",
-  };
 
   // Use the live backend data for the category options for a real-time updated list
   const categoryOptions = categories.map((category) => ({
