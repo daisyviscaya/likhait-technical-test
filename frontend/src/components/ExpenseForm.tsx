@@ -2,12 +2,12 @@
  * Form component for adding/editing expenses
  */
 
-import React, { useEffect, useState } from "react";
 import { Category, ExpenseFormData } from "../types";
 import { TextField, SelectBox, Button } from "../vibes";
 import { useExpenseForm } from "../hooks/useExpenseForm";
 import { fetchCategories } from "../services/api";
 import { buttonGroupStyle, formStyle } from "../styles/forms";
+import { useEffect, useState } from "react";
 
 interface ExpenseFormProps {
   initialData?: Partial<ExpenseFormData>;
@@ -41,7 +41,7 @@ export function ExpenseForm({
 
   // Use the live backend data for the category options for a real-time updated list
   const categoryOptions = categories.map((category) => ({
-    value: category.name,
+    value: category.id,
     label: category.name,
   }));
 
@@ -73,9 +73,9 @@ export function ExpenseForm({
       <SelectBox
         label="Category"
         options={categoryOptions}
-        value={formData.category}
-        onChange={(e) => handleChange("category", e.target.value)}
-        error={errors.category}
+        value={formData.category_id}
+        onChange={(e) => handleChange("category_id", e.target.value)}
+        error={errors.category_id}
         fullWidth
         required
       />

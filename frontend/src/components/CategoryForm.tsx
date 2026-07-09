@@ -1,4 +1,3 @@
-import React from "react";
 import { CategoryFormData } from "../types";
 import { TextField, Button } from "../vibes";
 import { useCategoryForm } from "../hooks/useCategoryForm";
