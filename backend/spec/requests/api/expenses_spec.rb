@@ -51,7 +51,7 @@ RSpec.describe "Api::Expenses", type: :request do
     end
 
     context "with invalid parameters" do
-      it "with negative amounts" do
+      it "fails with negative amounts" do
         invalid_params = {
           expense: {
             description: "Invalid expense",
@@ -68,7 +68,24 @@ RSpec.describe "Api::Expenses", type: :request do
         expect(response).to have_http_status(:unprocessable_content)
       end
 
-      it "with empty descriptions" do
+      it "fails with 0 amount" do
+        invalid_params = {
+          expense: {
+            description: "Invalid expense",
+            amount: 0,
+            category_id: food_category.id,
+            date: Date.today
+          }
+        }
+
+        expect {
+          post "/api/expenses", params: invalid_params, as: :json
+        }.not_to change(Expense, :count)
+
+        expect(response).to have_http_status(:unprocessable_content)
+      end
+
+      it "fails with empty descriptions" do
         invalid_params = {
           expense: {
             description: "",
