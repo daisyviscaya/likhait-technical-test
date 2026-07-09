@@ -4,6 +4,7 @@
 
 import React from "react";
 import { COLORS } from "../constants/colors";
+import { errorStyle, labelStyle, requiredStyle } from "../styles/forms";
 
 interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -24,12 +25,6 @@ export function TextField({
     width: fullWidth ? "100%" : "auto",
   };
 
-  const labelStyle: React.CSSProperties = {
-    fontSize: "0.875rem",
-    fontWeight: 600,
-    color: COLORS.text.primary,
-  };
-
   const inputStyle: React.CSSProperties = {
     padding: "0.5rem 0.75rem",
     fontSize: "1rem",
@@ -41,15 +36,14 @@ export function TextField({
     color: COLORS.text.primary,
   };
 
-  const errorStyle: React.CSSProperties = {
-    fontSize: "0.75rem",
-    color: COLORS.danger,
-    marginTop: "-0.25rem",
-  };
-
   return (
     <div style={containerStyle}>
-      {label && <label style={labelStyle}>{label}</label>}
+      {label && (
+        <label style={labelStyle}>
+          {label}
+          {props.required && <span style={requiredStyle}>*</span>}
+        </label>
+      )}
       <input style={inputStyle} {...props} />
       {error && <span style={errorStyle}>{error}</span>}
     </div>
