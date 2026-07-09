@@ -4,6 +4,7 @@
 
 import React from "react";
 import { COLORS } from "../constants/colors";
+import { requiredStyle } from "../styles/forms";
 
 interface SelectBoxProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
@@ -30,11 +31,6 @@ export function SelectBox({
     fontSize: "0.875rem",
     fontWeight: 600,
     color: COLORS.text.primary,
-  };
-
-  const requiredStyle: React.CSSProperties = {
-    color: COLORS.danger,
-    marginLeft: "2px",
   };
 
   const selectStyle: React.CSSProperties = {

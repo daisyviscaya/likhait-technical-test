@@ -4,6 +4,7 @@
 
 import React from "react";
 import { COLORS } from "../constants/colors";
+import { requiredStyle } from "../styles/forms";
 
 interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -45,11 +46,6 @@ export function TextField({
     fontSize: "0.75rem",
     color: COLORS.danger,
     marginTop: "-0.25rem",
-  };
-
-  const requiredStyle: React.CSSProperties = {
-    color: COLORS.danger,
-    marginLeft: "2px",
   };
 
   return (
