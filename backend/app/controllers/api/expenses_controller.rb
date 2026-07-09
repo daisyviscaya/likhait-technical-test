@@ -1,6 +1,6 @@
 class Api::ExpensesController < ApplicationController
   def index
-    expenses = Expense.includes(:category).order(created_at: :desc)
+    expenses = Expense.includes(:category).order(date: :desc)
 
     if params[:year].present? && params[:month].present?
       year = params[:year].to_i
@@ -9,7 +9,7 @@ class Api::ExpensesController < ApplicationController
       start_date = Date.new(year, month, 1)
       end_date = start_date.end_of_month
 
-      expenses = expenses.where(created_at: start_date.beginning_of_day..end_date.end_of_day)
+      expenses = expenses.where(date: start_date.beginning_of_day..end_date.end_of_day)
     end
 
     render json: expenses.map { |expense| format_expense(expense) }
@@ -21,7 +21,7 @@ class Api::ExpensesController < ApplicationController
     if expense.save
       render json: format_expense(expense), status: :created
     else
-      render json: { errors: expense.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: expense.errors.full_messages }, status: :unprocessable_content
     end
   end
 
@@ -31,7 +31,7 @@ class Api::ExpensesController < ApplicationController
     if expense.update(expense_params)
       render json: format_expense(expense)
     else
-      render json: { errors: expense.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: expense.errors.full_messages }, status: :unprocessable_content
     end
   end
 
