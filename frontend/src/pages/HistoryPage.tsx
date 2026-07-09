@@ -90,6 +90,7 @@ const HistoryPage: React.FC = () => {
       setIsNewCategoryModalOpen(false);
     } catch (error) {
       console.error("Error creating category:", error);
+      alert(error)
       throw error;
     }
   }

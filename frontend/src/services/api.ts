@@ -50,7 +50,8 @@ export async function createCategory(data: CategoryFormData): Promise<
   });
 
   if (!response.ok) {
-    throw new Error("Failed to create expense");
+    const errorData = await response.json();
+    throw new Error(errorData.errors[0]);
   }
 
   return response.json();
