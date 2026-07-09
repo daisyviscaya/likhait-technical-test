@@ -101,6 +101,23 @@ RSpec.describe "Api::Expenses", type: :request do
 
         expect(response).to have_http_status(:unprocessable_content)
       end
+
+      it "fails with empty category" do
+        invalid_params = {
+          expense: {
+            description: "Invalid expense",
+            amount: 100.00,
+            category_id: nil,
+            date: Date.today
+          }
+        }
+
+        expect {
+          post "/api/expenses", params: invalid_params, as: :json
+        }.not_to change(Expense, :count)
+
+        expect(response).to have_http_status(:unprocessable_content)
+      end
     end
   end
 end
