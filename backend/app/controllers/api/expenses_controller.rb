@@ -21,7 +21,7 @@ class Api::ExpensesController < ApplicationController
     if expense.save
       render json: format_expense(expense), status: :created
     else
-      render json: { errors: expense.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: expense.errors.full_messages }, status: :unprocessable_content
     end
   end
 
@@ -31,7 +31,7 @@ class Api::ExpensesController < ApplicationController
     if expense.update(expense_params)
       render json: format_expense(expense)
     else
-      render json: { errors: expense.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: expense.errors.full_messages }, status: :unprocessable_content
     end
   end
 
@@ -53,6 +53,7 @@ class Api::ExpensesController < ApplicationController
       description: expense.description,
       amount: expense.amount.to_f,
       category: expense.category.name,
+      category_id: expense.category_id,
       date: expense.date.to_s,
       created_at: expense.created_at,
       updated_at: expense.updated_at
